@@ -1,8 +1,6 @@
 from models import User
+from const import *
 import nexmo
-
-api_key = 'b703a97b'
-api_secret = 'efd64976044f3ed9'
 
 def is_email_taken(email_sent):
     try:
@@ -13,10 +11,10 @@ def is_email_taken(email_sent):
 
 
 def send_message(sender, text):
-    client = nexmo.Client(key=api_key, secret=api_secret)
+    client = nexmo.Client(key=NEXMO_API_KEY, secret=NEXMO_API_SECRET)
     response = client.send_message({
         'from': sender,
-        'to': '+33668872918',
+        'to': NEXMO_TEST_PHONE,
         'text': text
     })
     response = response['messages'][0]

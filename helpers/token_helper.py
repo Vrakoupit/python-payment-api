@@ -1,9 +1,6 @@
 import os, binascii
 from models import Token
 
-def token_helper():
-    return "hello"
-
 def generate_token():
     token_gen = binascii.b2a_hex(os.urandom(16))
     return token_gen

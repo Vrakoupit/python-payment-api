@@ -4,11 +4,12 @@ from helpers.payment_helper import *
 from helpers.user_helper import *
 from models import Payment, User, Token, Code
 from playhouse.shortcuts import model_to_dict, dict_to_model
+from const import *
 
 
 app_payment = Blueprint('app_payment', __name__)
 
-stripe.api_key = 'sk_test_GVuk5LfYySvq2xlmhxtQ9jrs'
+stripe.api_key = STRIPE_API_KEY
 
 
 @app_payment.route('/payments', methods=['POST'])

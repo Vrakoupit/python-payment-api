@@ -1,0 +1,11 @@
+# Ignore .pyc files
+*.pyc
+
+# Ignore const files
+const.py
+
+# Ignore db
+*.db
+
+# Ignore .DS_Store
+*.DS_Store

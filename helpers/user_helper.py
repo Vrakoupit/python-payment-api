@@ -2,6 +2,8 @@ from models import User
 from const import *
 import nexmo
 
+
+# Check if the email is available
 def is_email_taken(email_sent):
     try:
         user = User.get(User.email == email_sent)
@@ -10,6 +12,7 @@ def is_email_taken(email_sent):
         return False
 
 
+# Sends a message to a mobile
 def send_message(sender, text):
     client = nexmo.Client(key=NEXMO_API_KEY, secret=NEXMO_API_SECRET)
     response = client.send_message({

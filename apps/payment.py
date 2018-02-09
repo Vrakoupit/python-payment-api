@@ -12,6 +12,7 @@ app_payment = Blueprint('app_payment', __name__)
 stripe.api_key = STRIPE_API_KEY
 
 
+# Create a transaction for a specific user
 @app_payment.route('/payments', methods=['POST'])
 def create_payment():
 
@@ -57,6 +58,7 @@ def create_payment():
             return jsonify({'error': True, 'message': '{error}'.format(error=e) }), 400
 
 
+# 3D Secure step to verify the transaction
 @app_payment.route('/payments/verification', methods=['POST'])
 def verify_payment():
 
@@ -81,6 +83,7 @@ def verify_payment():
         return jsonify({'error': True, 'message': 'Error during process'}), 400
 
 
+# Get a transaction of a specific user
 @app_payment.route('/payment/<id>', methods=['POST'])
 def get_transaction(id):
 
@@ -107,6 +110,7 @@ def get_transaction(id):
         return jsonify({'error': False, 'message': 'Not found {error}'.format(error=error) }), 400
 
 
+# Get all transactions of a specific user
 @app_payment.route('/payments', methods=['GET'])
 def get_all_transactions():
 

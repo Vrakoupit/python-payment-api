@@ -9,12 +9,14 @@ from playhouse.shortcuts import model_to_dict, dict_to_model
 app_token = Blueprint('app_token', __name__)
 
 
+# List all the tokens
 @app_token.route('/tokens', methods=['GET'])
 def tokens():
 
     return jsonify({'error': False, 'tokens': list(Token.select().dicts()) }), 201
 
 
+# Sends a code to give a token to a user
 @app_token.route('/login', methods=['POST'])
 def send():
 
@@ -42,6 +44,7 @@ def send():
         return jsonify({'error': True, 'message': e}), 400
 
 
+# Gives a token to a user after validation of the code
 @app_token.route('/auth', methods=['POST'])
 def auth_user():
 

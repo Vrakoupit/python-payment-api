@@ -2,6 +2,7 @@ from models import User, Token, Payment
 import datetime
 
 
+# Check if the token sent exists
 def check_token(tokenString):
     try:
         token = Token.get(Token.value == tokenString)
@@ -17,6 +18,7 @@ def check_token(tokenString):
         return False
 
 
+# Check if the token and payment id sent are associated to a transaction
 def check_user(token, payment):
     try:
         test_token = Token.get(Token.value == token)

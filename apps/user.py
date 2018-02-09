@@ -8,6 +8,7 @@ from playhouse.shortcuts import model_to_dict, dict_to_model
 app_user = Blueprint('app_user', __name__)
 
 
+# Create a user
 @app_user.route('/users', methods=['POST'])
 def create_user():
     
@@ -27,12 +28,14 @@ def create_user():
         return jsonify({'error': False, 'user': data}), 201
         
 
+# Get all the users
 @app_user.route('/users', methods=['GET'])
 def get_all_users():
 
     return jsonify({'error': False, 'users': list(User.select().dicts()) }), 201
 
 
+# Get a specific user
 @app_user.route('/user/<id>', methods=['GET'])
 def get_user(id):
 
@@ -45,6 +48,7 @@ def get_user(id):
         return jsonify({'error': True, 'message': 'Not found {message}'.format(message=identifier.message)}), 400
 
 
+# Update a specific user
 @app_user.route('/user/<id>', methods=['PUT'])
 def update_user(id):
 
@@ -69,6 +73,7 @@ def update_user(id):
         return jsonify({'error': True, 'message': 'Not found {message}'.format(message=identifier.message)}), 400
 
 
+# Delete a specific user
 @app_user.route('/user/<id>', methods=['DELETE'])
 def delete_user(id):
 
@@ -81,6 +86,7 @@ def delete_user(id):
         return jsonify({'error': True, 'message': 'Not found {message}'.format(message=identifier.message)}), 400
         
 
+# List all the codes generated
 @app_user.route('/codes', methods=['GET'])
 def test():
     return jsonify({'codes': list(Code.select().dicts()) }), 201
